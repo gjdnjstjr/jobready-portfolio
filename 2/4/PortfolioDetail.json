@@ -1,0 +1,64 @@
+{
+  "id": "test-project-jobready",
+  "kind": "개인 프로젝트",
+  "period": "[확인 필요]",
+  "title": [
+    "JobReady",
+    ""
+  ],
+  "summary": [
+    "GitHub OAuth2의 사용자 ID를 내부 사용자와 연결해 모든 개인화 기능의 기준을 하나로 통일했습니다.",
+    "서비스 계층에서 DTO 변환을 담당하게 해 엔티티 노출을 줄이고 API 응답 구조를 분리했습니다.",
+    "프로필, 프로젝트, 레포지토리, 북마크, 경력, 이력서, 채용공고를 도메인별로 나눠 유지보수하기 쉬운 백엔드 구조를 만들었습니다."
+  ],
+  "techs": [
+    "Java",
+    "Spring Boot",
+    "Spring Web (REST API)",
+    "Spring Security",
+    "OAuth2",
+    "Lombok",
+    "Java Stream API"
+  ],
+  "github_url": "https://github.com/gjdnjstjr/Test-project-jobready",
+  "hero_image": "",
+  "download_filename": "Test-project-jobready-portfolio.html",
+  "flow": [
+    "GitHub OAuth2 로그인 사용자를 기준으로 내 정보 조회 및 프로필 수정 기능을 제공합니다.",
+    "프로젝트와 GitHub 레포지토리를 사용자 단위로 조회하고, 특정 레포지토리의 커밋 목록을 조회합니다. [확인 필요]",
+    "채용공고 목록·상세, 북마크 추가·삭제·조회, 추천 채용공고 조회, 경력과 이력서의 CRUD 기능을 제공합니다. [확인 필요]"
+  ],
+  "design": [
+    {
+      "title": "아키텍처",
+      "description": "Spring Boot 기반의 REST API 서버로, Controller-Service-Repository 계층을 분리한 구조입니다. 인증이 필요한 API는 `@AuthenticationPrincipal OAuth2User`를 사용해 GitHub 로그인 사용자를 식별하고, `UserRepository.findByGithubId(...)`로 내부 사용자와 연결합니다. 이후 프로젝트, 레포지토리, 북마크, 경력, 이력서, 채용공고, 추천 채용공고, 커밋 조회 기능을 도메인별 서비스에서 처리한 뒤 `xxxResponseDto::from` 패턴으로 응답 DTO로 변환합니다. [확인 필요]"
+    },
+    {
+      "title": "기술 선택",
+      "description": "프로젝트는 Spring Boot와 REST API를 중심으로 구성해 도메인별 기능을 빠르게 확장할 수 있도록 설계되었습니다. 인증은 GitHub OAuth2를 사용해 개발자 서비스에 자연스러운 온보딩을 제공하고, 사용자 식별 기준을 GitHub ID로 통일했습니다. 응답은 엔티티가 아닌 DTO로 반환해 프론트엔드와의 계약을 안정적으로 유지하도록 했습니다. 또한 서비스 계층에서 조회·변환을 담당하게 하여 컨트롤러를 얇게 유지했습니다. [확인 필요]"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "로그인한 사용자를 기준으로 여러 도메인 기능을 일관되게 처리해야 했습니다.",
+      "cause": "기능마다 다른 사용자 식별 기준을 쓰면 프로젝트, 북마크, 추천 공고, 이력서 등의 연결이 복잡해집니다.",
+      "solution": "`@AuthenticationPrincipal OAuth2User`에서 GitHub `id`를 꺼내고, `UserRepository.findByGithubId(...)`로 내부 User를 조회한 뒤 모든 사용자 중심 기능에 동일한 식별자를 사용했습니다. 결과: 사용자별 조회와 개인화 기능이 동일한 흐름으로 동작하는 구조를 만들었습니다. [확인 필요]"
+    },
+    {
+      "problem": "API 응답이 도메인 엔티티에 직접 의존하면 내부 모델 변경이 외부 API에 영향을 줄 수 있습니다.",
+      "cause": "엔티티와 응답 모델이 결합되면 유지보수성과 계약 안정성이 떨어집니다.",
+      "solution": "서비스 계층에서 `xxxResponseDto.from(entity)` 패턴으로 변환하고, 컨트롤러는 DTO만 반환하도록 분리했습니다. 결과: 응답 구조를 엔티티와 분리해 API 계약을 안정적으로 유지할 수 있게 했습니다. [확인 필요]"
+    },
+    {
+      "problem": "프로필 수정 시 일부 필드만 변경하고 싶어도 전체 값이 덮어써질 수 있습니다.",
+      "cause": "전체 입력을 전제로 한 수정 로직은 부분 업데이트에 취약합니다.",
+      "solution": "`UserService.updateUser()`에서 각 필드에 대해 null 체크 후 전달된 값만 반영하도록 구현했습니다. 결과: 이름, 주소, 희망 직무를 필요한 항목만 선택적으로 수정할 수 있게 되었습니다. [확인 필요]"
+    }
+  ],
+  "screens": [
+    {
+      "file": "images/screen-1.png",
+      "label": ""
+    }
+  ]
+}

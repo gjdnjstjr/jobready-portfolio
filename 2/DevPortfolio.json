@@ -1,0 +1,246 @@
+{
+  "name": "백엔드",
+  "owner": "gjdnjstjr",
+  "footer": "© 2026 gjdnjstjr",
+  "home": {
+    "headline": [
+      "백엔드 포지션 지원자 gjdnjstjr입니다.",
+      "Java·Spring Boot·OAuth2 기반 기능 구현과 Git 기반 작업 이력이 있습니다."
+    ],
+    "summary": [
+      "JobReady에서 GitHub OAuth2 로그인, 내 정보 조회·프로필 수정, 사용자 단위 레포지토리 조회와 커밋 조회, 채용공고·북마크·추천·경력·이력서 CRUD 기능을 구현했습니다.",
+      "mylink에서는 전역 레이아웃 메타데이터·언어·폰트·다크 테마를 일관되게 적용하고, 채팅형 인터랙션 UI와 Web Share API 기반 공유 기능을 구현했습니다."
+    ],
+    "stats": [
+      {
+        "label": "프로젝트",
+        "value": 4
+      },
+      {
+        "label": "수상 경험",
+        "value": 0
+      },
+      {
+        "label": "활동",
+        "value": 0
+      }
+    ],
+    "photo_text": "g",
+    "photo": "",
+    "photos": [],
+    "location": "서울",
+    "position": "백엔드"
+  },
+  "about": {
+    "title": "사용 기술 및 경험",
+    "description": "이 포트폴리오에 입력한 기술과 경험입니다.",
+    "groups": [
+      {
+        "name": "기술 스택",
+        "description": "내정보에 있는 기술입니다.",
+        "rows": [
+          {
+            "name": "JavaScript",
+            "experience": "[확인 필요]"
+          },
+          {
+            "name": "Java",
+            "experience": "[확인 필요]"
+          },
+          {
+            "name": "C",
+            "experience": "[확인 필요]"
+          },
+          {
+            "name": "TypeScript",
+            "experience": "[확인 필요]"
+          },
+          {
+            "name": "CSS",
+            "experience": "[확인 필요]"
+          },
+          {
+            "name": "HTML",
+            "experience": "[확인 필요]"
+          }
+        ]
+      }
+    ],
+    "main_tech": [
+      {
+        "name": "JavaScript",
+        "color": "#2443C4"
+      },
+      {
+        "name": "Java",
+        "color": "#2443C4"
+      },
+      {
+        "name": "C",
+        "color": "#2443C4"
+      },
+      {
+        "name": "TypeScript",
+        "color": "#2443C4"
+      },
+      {
+        "name": "CSS",
+        "color": "#2443C4"
+      },
+      {
+        "name": "HTML",
+        "color": "#2443C4"
+      }
+    ],
+    "awards": []
+  },
+  "history": {
+    "title": "이력 및 활동",
+    "description": "학력은 내정보이고, 활동과 자격은 입력한 내용입니다.",
+    "activities_title": "활동 및 경험",
+    "activities_description": "입력한 활동입니다.",
+    "activities": [],
+    "education": {
+      "major": "",
+      "school": "한빛대학교 · 대학교(4년)",
+      "period": "2022-02-01 – 2026-11-01"
+    },
+    "certificates": []
+  },
+  "projects": [
+    {
+      "id": "jobready-ver2",
+      "detail_page": "1/PortfolioDetail.html",
+      "github_url": "https://github.com/gjdnjstjr/jobready-ver2",
+      "language": "[확인 필요]",
+      "language_color": "#2443C4",
+      "cover_bg": "#1F2430",
+      "cover_ink": "#F4F5F2",
+      "main_tech": "[확인 필요]",
+      "period": "2026.01 – 2026.10",
+      "title": "jobready-ver2",
+      "stack": "[확인 필요] · Java · C++ · JavaScript · C",
+      "summary": [
+        "프로젝트의 실제 해결 과제는 현재 제공된 자료만으로 확인할 수 없어 [확인 필요]입니다.",
+        "핵심 기능과 사용자 흐름을 검증할 코드 근거가 없어 [확인 필요]입니다.",
+        "기술 선택과 구조적 의사결정을 판단할 수 있는 소스와 커밋이 제공되지 않아 [확인 필요]입니다."
+      ],
+      "cover_image": ""
+    },
+    {
+      "id": "mylink",
+      "detail_page": "2/PortfolioDetail.html",
+      "github_url": "https://github.com/gjdnjstjr/mylink",
+      "language": "Next.js",
+      "language_color": "#2443C4",
+      "cover_bg": "#1F2430",
+      "cover_ink": "#F4F5F2",
+      "main_tech": "Next.js",
+      "period": "[확인 필요]",
+      "title": "mylink",
+      "stack": "Next.js · React · TypeScript · next/font/google · Web Share API · CSS(globals.css)",
+      "summary": [
+        "전역 레이아웃에서 폰트, 언어, 메타데이터, 테마를 통합 관리해 개인 브랜딩의 일관성을 유지했습니다.",
+        "채팅형 인터랙션과 입력 상태 관리를 통해 정적 포트폴리오를 참여형 랜딩 페이지로 확장했습니다.",
+        "브라우저 기본 공유 기능을 활용해 별도 라이브러리 없이 공유 가능한 링크 허브를 구현했습니다."
+      ],
+      "cover_image": "2/images/screen-1.png"
+    },
+    {
+      "id": "test-commit",
+      "detail_page": "3/PortfolioDetail.html",
+      "github_url": "https://github.com/gjdnjstjr/TEST-commit",
+      "language": "Git",
+      "language_color": "#2443C4",
+      "cover_bg": "#1F2430",
+      "cover_ink": "#F4F5F2",
+      "main_tech": "Git",
+      "period": "[확인 필요]",
+      "title": "TEST-commit",
+      "stack": "Git · GitHub · 텍스트 파일 기반 작업",
+      "summary": [
+        "단일 산출물(TEST0518.txt)을 반복 수정하며 결과물을 다듬는 과정을 Git 커밋으로 추적 가능하게 남겼습니다.",
+        "복잡한 서비스 구현보다 변경 이력 관리와 산출물 정리에 초점을 둔 개인 저장소입니다.",
+        "`Add files via upload` 이후 `Update TEST0518.txt` 커밋이 이어져 초안 작성 후 보완한 흐름을 확인할 수 있습니다."
+      ],
+      "cover_image": "3/images/hero.png"
+    },
+    {
+      "id": "test-project-jobready",
+      "detail_page": "4/PortfolioDetail.html",
+      "github_url": "https://github.com/gjdnjstjr/Test-project-jobready",
+      "language": "Java",
+      "language_color": "#2443C4",
+      "cover_bg": "#1F2430",
+      "cover_ink": "#F4F5F2",
+      "main_tech": "Java",
+      "period": "[확인 필요]",
+      "title": "JobReady",
+      "stack": "Java · Spring Boot · Spring Web (REST API) · Spring Security · OAuth2 · Lombok · Java Stream API",
+      "summary": [
+        "GitHub OAuth2의 사용자 ID를 내부 사용자와 연결해 모든 개인화 기능의 기준을 하나로 통일했습니다.",
+        "서비스 계층에서 DTO 변환을 담당하게 해 엔티티 노출을 줄이고 API 응답 구조를 분리했습니다.",
+        "프로필, 프로젝트, 레포지토리, 북마크, 경력, 이력서, 채용공고를 도메인별로 나눠 유지보수하기 쉬운 백엔드 구조를 만들었습니다."
+      ],
+      "cover_image": "4/images/screen-1.png"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "stack": "",
+      "project": "jobready-ver2",
+      "tag": "",
+      "title": "레포지토리 메타 정보만 제공되어 프로젝트의 실제 구조를 분석할 수 없었습니다.",
+      "problem": "레포지토리 메타 정보만 제공되어 프로젝트의 실제 구조를 분석할 수 없었습니다.",
+      "cause": "README, 디렉터리 트리, 소스 코드, 커밋 내역이 제공되지 않았습니다.",
+      "solution": "[확인 필요] 저장소 구조와 핵심 파일, 커밋 로그를 추가로 확인해야 합니다. [확인 필요]",
+      "result": "아키텍처, 기능, 기술 스택, 문제 해결 사례를 코드 기반으로 작성할 수 있는 상태가 됩니다. [확인 필요]",
+      "detail_page": ""
+    },
+    {
+      "stack": "",
+      "project": "mylink",
+      "tag": "",
+      "title": "정적 소개 페이지는 방문자 참여와 공유 동기를 만들기 어렵습니다.",
+      "problem": "정적 소개 페이지는 방문자 참여와 공유 동기를 만들기 어렵습니다.",
+      "cause": "정보를 나열하는 방식만으로는 사용자가 능동적으로 반응할 장치가 부족합니다.",
+      "solution": "`navigator.share`를 이용한 공유 기능과 채팅형 UI를 결합해 방문자가 참여하고 전달할 수 있는 구조로 구성했습니다.",
+      "result": "코드상 공유와 입력 기반 인터랙션이 함께 동작하는 개인 브랜딩 허브로 바뀌었습니다.",
+      "detail_page": ""
+    },
+    {
+      "stack": "",
+      "project": "TEST-commit",
+      "tag": "",
+      "title": "초기 업로드 후 최종본이 아니라 추가 수정이 필요했습니다.",
+      "problem": "초기 업로드 후 최종본이 아니라 추가 수정이 필요했습니다.",
+      "cause": "초기 작성본의 완성도나 정리 수준이 충분하지 않았을 가능성이 있습니다. (추정)",
+      "solution": "`TEST0518.txt`를 여러 커밋(`942a327b`, `c4616dfa`)으로 나누어 수정하며 내용을 보완했습니다. [확인 필요]",
+      "result": "커밋 이력상 단계적인 개선 과정이 남아 결과물의 완성도를 높인 흐름을 확인할 수 있습니다. [확인 필요]",
+      "detail_page": ""
+    },
+    {
+      "stack": "",
+      "project": "JobReady",
+      "tag": "",
+      "title": "로그인한 사용자를 기준으로 여러 도메인 기능을 일관되게 처리해야 했습니다.",
+      "problem": "로그인한 사용자를 기준으로 여러 도메인 기능을 일관되게 처리해야 했습니다.",
+      "cause": "기능마다 다른 사용자 식별 기준을 쓰면 프로젝트, 북마크, 추천 공고, 이력서 등의 연결이 복잡해집니다.",
+      "solution": "`@AuthenticationPrincipal OAuth2User`에서 GitHub `id`를 꺼내고, `UserRepository.findByGithubId(...)`로 내부 User를 조회한 뒤 모든 사용자 중심 기능에 동일한 식별자를 사용했습니다.",
+      "result": "사용자별 조회와 개인화 기능이 동일한 흐름으로 동작하는 구조를 만들었습니다. [확인 필요]",
+      "detail_page": ""
+    }
+  ],
+  "contact": {
+    "title": "연락처",
+    "description": "채용 문의나 협업 제안은 이메일로 보내주세요.",
+    "email": "",
+    "links": [
+      {
+        "label": "GITHUB",
+        "value": "github.com/gjdnjstjr",
+        "url": "https://github.com/gjdnjstjr"
+      }
+    ]
+  }
+}

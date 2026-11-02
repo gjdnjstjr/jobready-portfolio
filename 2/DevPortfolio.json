@@ -4,8 +4,8 @@
   "footer": "© 2026 gjdnjstjr",
   "home": {
     "headline": [
-      "백엔드 포지션 지원자 gjdnjstjr입니다.",
-      "Java·Spring Boot·OAuth2 기반 기능 구현과 Git 기반 작업 이력이 있습니다."
+      "프론트 포지션 지원자 인세진입니다.",
+      "아 인마 나 인세진 아이가"
     ],
     "summary": [
       "JobReady에서 GitHub OAuth2 로그인, 내 정보 조회·프로필 수정, 사용자 단위 레포지토리 조회와 커밋 조회, 채용공고·북마크·추천·경력·이력서 CRUD 기능을 구현했습니다.",
@@ -18,18 +18,18 @@
       },
       {
         "label": "수상 경험",
-        "value": 0
+        "value": 1
       },
       {
         "label": "활동",
-        "value": 0
+        "value": 1
       }
     ],
     "photo_text": "g",
-    "photo": "",
+    "photo": "images/photo.png",
     "photos": [],
-    "location": "서울",
-    "position": "백엔드"
+    "location": "인세진 랜드",
+    "position": "프론트인데 벡엔드 맛나는"
   },
   "about": {
     "title": "사용 기술 및 경험",
@@ -41,27 +41,31 @@
         "rows": [
           {
             "name": "JavaScript",
-            "experience": "[확인 필요]"
+            "experience": "인"
           },
           {
             "name": "Java",
-            "experience": "[확인 필요]"
+            "experience": "세"
           },
           {
             "name": "C",
-            "experience": "[확인 필요]"
+            "experience": "진"
           },
           {
             "name": "TypeScript",
-            "experience": "[확인 필요]"
+            "experience": "나"
           },
           {
             "name": "CSS",
-            "experience": "[확인 필요]"
+            "experience": "인씨"
           },
           {
             "name": "HTML",
-            "experience": "[확인 필요]"
+            "experience": "인데"
+          },
+          {
+            "name": "c++",
+            "experience": "어쩌라고"
           }
         ]
       }
@@ -92,14 +96,26 @@
         "color": "#2443C4"
       }
     ],
-    "awards": []
+    "awards": [
+      {
+        "date": "2026",
+        "name": "인세진 상"
+      }
+    ]
   },
   "history": {
     "title": "이력 및 활동",
     "description": "학력은 내정보이고, 활동과 자격은 입력한 내용입니다.",
     "activities_title": "활동 및 경험",
     "activities_description": "입력한 활동입니다.",
-    "activities": [],
+    "activities": [
+      {
+        "period": "2022.04 ~ 2024.06",
+        "name": "대한민국에서 태어남",
+        "role": "나는 태어난 역할만 있음",
+        "items": []
+      }
+    ],
     "education": {
       "major": "",
       "school": "한빛대학교 · 대학교(4년)",

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프로젝트 상세</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F5F2}
+a{color:#2443C4;text-decoration:none}a:hover{color:#16308F}
+.sh{display:flex;align-items:center;gap:16px;margin:0 0 20px}
+.sh h2{margin:0;font-size:22px;letter-spacing:-0.4px;white-space:nowrap}
+.sh i{flex:1;height:1px;background:#D9DBD3}
+.tc{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:8px;background:#F1F2EE;font-size:13.5px;font-weight:500;color:#3D424A}
+.tc b{width:8px;height:8px;border-radius:2px;background:#2443C4}
+.step{flex:1;min-width:0;background:#FFFFFF;border:1px solid #E1E3DC;border-left:3px solid #2443C4;border-radius:10px;padding:18px 16px;font-size:15px;font-weight:600}
+.step small{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:#6B7079;font-weight:500;margin-bottom:6px}
+.arr{color:#8A8F96;font-size:20px;flex:none}
+.dc{background:#FFFFFF;border:1px solid #E1E3DC;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.dc h3{margin:0;font-size:17px}
+.dc p{margin:0;font-size:14.5px;line-height:1.7;color:#3D424A}
+.tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:32px;padding:24px 0;border-top:1px solid #E1E3DC}
+.k{font-size:12.5px;font-weight:700;color:#2443C4;letter-spacing:.3px}
+.ph{background:#2B2F35;border-radius:10px;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;color:#C9CCD2;font-family:'JetBrains Mono',monospace;font-size:12.5px}
+.hero-photo,.shot-photo{object-fit:cover;border-radius:10px;background:#F4F5F2;cursor:zoom-in}
+.hero-photo{flex:0 0 440px;width:440px;max-width:42%;aspect-ratio:4/3;height:auto}
+.shot-photo{aspect-ratio:16/10;width:100%;height:auto}
+.zoom{position:fixed;inset:0;z-index:40;background:rgba(21,23,26,.86);display:flex;align-items:center;justify-content:center;padding:28px;cursor:zoom-out}
+.zoom img{max-width:min(1100px,100%);max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:12px}
+.empty{background:#FFFFFF;border:1.5px dashed #C7CAC0;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#6B7079;font-family:'JetBrains Mono',monospace;font-size:13.5px;box-sizing:border-box}
+.shot{position:relative}
+.shot::before{content:"";position:absolute;inset:10px -8px -8px 10px;background:#E4E6E0;border-radius:14px;z-index:0}
+.shot>div{position:relative;z-index:1;background:#FFFFFF;border:1px solid #E1E3DC;border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:12px}
+@media (max-width:760px){.flow{flex-direction:column}.arr{transform:rotate(90deg)}.g3,.g2{grid-template-columns:minmax(0,1fr)!important}.tr{grid-template-columns:minmax(0,1fr);gap:12px}.wrap{padding:20px 16px!important}.hero{flex-direction:column}.hero-photo,.ph{width:100%;max-width:100%;flex-basis:auto}}
+</style>
+<script src="../_runtime/preact.min.js"></script>
+<script src="../_runtime/dc-lite.js"></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<script>window.__DC_TREE = [
+{"t":"div","a":{"style":"min-height:100vh;font-family:'IBM Plex Sans KR',system-ui,sans-serif;color:#15171A;background:#F4F5F2"},"c":[
+{"t":"main","a":{"class":"wrap","style":"max-width:1180px;margin:0 auto;padding:28px 32px 80px;display:flex;flex-direction:column;gap:56px"},"c":[
+{"t":"div","a":{"style":"display:flex;flex-direction:column;gap:16px"},"c":[
+{"t":"div","a":{"style":"display:flex;justify-content:flex-end;align-items:center"},"c":[
+{"t":"a","a":{"href":"{{htmlUrl}}","download":"{{downloadName}}","onClick":"{{onSave}}","style":"height:40px;padding:0 16px;border-radius:10px;border:1px solid #D9DBD3;background:#FFFFFF;color:#15171A;font-size:14px;font-weight:600;display:flex;align-items:center"},"c":["HTML로 저장"]}
+]},
+{"t":"section","a":{"class":"hero","style":"background:#FFFFFF;border:1px solid #E1E3DC;border-left:4px solid #2443C4;border-radius:16px;padding:36px;display:flex;gap:40px;align-items:center"},"c":[
+{"t":"div","a":{"style":"flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:18px"},"c":[
+{"t":"div","a":{"style":"display:flex;flex-wrap:wrap;align-items:center;gap:14px;font-size:14px;color:#4A4F57"},"c":[
+{"t":"span","c":["{{kind}}"]},
+{"t":"span","a":{"style":"width:1px;height:14px;background:#D9DBD3"}},
+{"t":"span","a":{"style":"font-family:'JetBrains Mono',monospace;font-size:13px"},"c":["{{period}}"]}
+]},
+{"t":"h1","a":{"style":"margin:0;font-size:38px;line-height:1.3;letter-spacing:-0.8px"},"c":["{{titleLead}}",{"t":"br"},"{{titleRest}}"]},
+{"t":"div","a":{"style":"display:flex;flex-wrap:wrap;gap:8px"},"c":[
+{"t":"sc-for","a":{"list":"{{techs}}","as":"t","hint-placeholder-count":"3"},"c":[
+{"t":"span","a":{"class":"tc"},"c":[{"t":"b"},"{{t.name}}"]}
+]}
+]},
+{"t":"sc-if","a":{"value":"{{hasGithub}}","hint-placeholder-val":"{{ true }}"},"c":[
+{"t":"a","a":{"href":"{{githubUrl}}","style":"height:44px;padding:0 18px;border-radius:10px;border:1px solid #15171A;color:#15171A;font-weight:600;font-size:14.5px;display:inline-flex;align-items:center"},"c":["GitHub ↗"]}
+]}
+]},
+{"t":"sc-if","a":{"value":"{{hasHero}}","hint-placeholder-val":"{{ false }}"},"c":[
+{"t":"img","a":{"class":"hero-photo","src":"{{heroSrc}}","alt":"{{heroLabel}}","onClick":"{{openHero}}"}}
+]},
+{"t":"sc-if","a":{"value":"{{showHeroText}}","hint-placeholder-val":"{{ true }}"},"c":[
+{"t":"div","a":{"class":"ph hero-photo","role":"img","aria-label":"{{heroLabel}}"},"c":["{{heroLabel}}"]}
+]}
+]}
+]},
+{"t":"section","c":[
+{"t":"div","a":{"class":"sh"},"c":[{"t":"h2","c":["핵심 흐름"]},{"t":"i"}]},
+{"t":"div","a":{"class":"flow","style":"display:flex;align-items:center;gap:12px;flex-wrap:wrap"},"c":[
+{"t":"sc-for","a":{"list":"{{flow}}","as":"f","hint-placeholder-count":"3"},"c":[
+{"t":"div","a":{"class":"step"},"c":[{"t":"small","c":["{{f.no}}"]},"{{f.label}}"]}
+]}
+]}
+]},
+{"t":"section","c":[
+{"t":"div","a":{"class":"sh"},"c":[{"t":"h2","c":["핵심 설계"]},{"t":"i"}]},
+{"t":"div","a":{"class":"g3","style":"display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px"},"c":[
+{"t":"sc-for","a":{"list":"{{design}}","as":"d","hint-placeholder-count":"2"},"c":[
+{"t":"div","a":{"class":"dc"},"c":[{"t":"h3","c":["{{d.title}}"]},{"t":"p","c":["{{d.description}}"]}]}
+]}
+]}
+]},
+{"t":"section","c":[
+{"t":"div","a":{"class":"sh"},"c":[{"t":"h2","c":["트러블슈팅"]},{"t":"i"}]},
+{"t":"div","a":{"style":"display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:32px;padding:0 0 10px"},"c":[
+{"t":"span","a":{"class":"k"},"c":["문제 상황"]},
+{"t":"span","a":{"class":"k"},"c":["원인 및 해결"]}
+]},
+{"t":"sc-for","a":{"list":"{{troubleshooting}}","as":"t","hint-placeholder-count":"1"},"c":[
+{"t":"div","a":{"class":"tr"},"c":[
+{"t":"p","a":{"style":"margin:0;font-size:15.5px;font-weight:600;line-height:1.6"},"c":["{{t.problem}}"]},
+{"t":"div","a":{"style":"display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.7;color:#3D424A"},"c":[
+{"t":"span","c":["원인 {{t.cause}}"]},
+{"t":"span","c":["해결 {{t.solution}}"]}
+]}
+]}
+]}
+]},
+{"t":"section","c":[
+{"t":"div","a":{"class":"sh"},"c":[{"t":"h2","c":["결과 및 화면"]},{"t":"i"}]},
+{"t":"div","a":{"class":"g2","style":"display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 32px"},"c":[
+{"t":"sc-for","a":{"list":"{{screens}}","as":"s","hint-placeholder-count":"1"},"c":[
+{"t":"div","a":{"class":"shot"},"c":[{"t":"div","c":[
+{"t":"sc-if","a":{"value":"{{s.hasImage}}","hint-placeholder-val":"{{ false }}"},"c":[
+{"t":"img","a":{"class":"shot-photo","src":"{{s.src}}","alt":"{{s.label}}","onClick":"{{s.open}}"}}
+]},
+{"t":"sc-if","a":{"value":"{{s.showText}}","hint-placeholder-val":"{{ true }}"},"c":[
+{"t":"div","a":{"class":"empty","style":"aspect-ratio:16/10"},"c":["{{s.fileLabel}}"]}
+]},
+{"t":"span","a":{"style":"font-size:14.5px;font-weight:600"},"c":["{{s.label}}"]}
+]}]}
+]}
+]}
+]}
+]}
+]},
+{"t":"sc-if","a":{"value":"{{hasZoom}}","hint-placeholder-val":"{{ false }}"},"c":[
+{"t":"div","a":{"class":"zoom","onClick":"{{closeZoom}}","role":"dialog","aria-label":"확대 이미지"},"c":[
+{"t":"img","a":{"src":"{{zoom}}","alt":""}}
+]}
+]}
+];
+window.__DC_DEFAULTS = {};</script>
+<script>window.__PAGE_DATA = {"id": "ai", "kind": "개인 프로젝트", "period": "[확인 필요]", "title": ["AI", "기반 데이터 분석·검색·전사 파이프라인"], "summary": ["원본 데이터 변경 시 오래된 검색 결과가 남지 않도록 인덱스를 재구성하는 동기화 흐름을 설계했습니다.", "GitHub 전체를 무차별 수집하지 않고 중요한 파일과 커밋만 선별해 분석 안정성과 품질을 높였습니다.", "파일 전사와 실시간 전사를 분리해 배치형 정확도와 실시간 응답성을 각각에 맞게 처리했습니다."], "techs": ["Oracle DB", "SQLAlchemy", "FastAPI", "LangGraph", "GitHub REST API", "OpenAI API", "WebSocket", "Vector Store", "Python"], "github_url": "https://github.com/AGENT-KW/AI", "hero_image": "", "download_filename": "AI-portfolio.html", "flow": ["사용자 문서를 로드·청킹·벡터 저장소에 적재하고 검색 및 검증용 근거를 제공하는 인덱싱 파이프라인", "GitHub 저장소 구조, 파일, 커밋 diff를 수집하되 tree truncation, 크기 제한, 인코딩 오류, rate limit을 고려한 안전한 분석", "녹음 파일 전사와 WebSocket 기반 실시간 전사를 분리해 서로 다른 사용 시나리오에 맞는 STT 처리"], "design": [{"title": "아키텍처", "description": "Oracle DB를 원천 데이터 계층으로 두고, `config/database.py`에서 FastAPI용 비동기 세션과 LangGraph/배치 작업용 동기 세션을 분리한 구조입니다. `retrieval/service.py`가 사용자 프로필·이력서·포트폴리오·프로젝트·학교·레포지토리·커밋·채용공고를 수집해 청킹, 벡터 저장소 upsert, 검색, 근거 검증을 오케스트레이션합니다. `services/github_code_service.py`는 GitHub 저장소 구조와 커밋 diff를 선별 수집하고, `services/stt_service.py`는 파일 업로드 전사와 실시간 Realtime 전사를 분리합니다. UI와 전체 엔드포인트 구조는 제공 자료만으로는 [확인 필요]입니다. [확인 필요]"}, {"title": "기술 선택", "description": "Oracle DB와 SQLAlchemy의 async/sync 이중 구성을 통해 FastAPI 요청 처리와 LangGraph 기반 동기 작업의 실행 모델 차이를 분리했습니다. 벡터 검색은 긴 문서를 직접 다루기보다 청킹 후 upsert·search하는 방식으로 구성했고, 검증 단계에서는 threshold를 기준으로 evidence 여부를 판정해 생성 결과를 근거 기반으로 통제했습니다. GitHub 연동은 전체 저장소를 단순 복제하는 방식이 아니라 tree truncation, 파일 크기 제한, rate limit, relevance scoring을 반영해 분석 대상 자체를 선별하도록 설계했습니다. STT는 안정적인 파일 업로드 전사와 지연을 줄인 실시간 전사를 분리해 입력 특성에 맞게 최적화했습니다. [확인 필요]"}], "troubleshooting": [{"problem": "Oracle 원본 데이터가 변경되거나 삭제되어도 기존 벡터 인덱스에 오래된 정보가 남을 수 있음", "cause": "벡터 저장소는 원본 DB와 자동으로 동기화되지 않기 때문에 삭제된 소스가 검색 결과에 잔존할 수 있음", "solution": "`retrieval/service.py`에서 `MANAGED_SOURCE_TYPES`를 기준으로 기존 소스를 먼저 삭제한 뒤 새 청크를 upsert하도록 구성함 결과: 삭제된 원본이 검색에 남는 stale data 문제를 구조적으로 줄이도록 설계됨"}, {"problem": "GitHub 저장소 전체를 분석하면 대용량 API 응답과 tree truncation, rate limit으로 인해 분석 품질이 흔들릴 수 있음", "cause": "분석 대상이 너무 크면 불필요한 파일까지 포함되고, API 응답이 잘리거나 제한에 걸릴 수 있음", "solution": "`services/github_code_service.py`에서 tree truncation 감지, 중요 파일 선별, 커밋 후보 점수화, 파일/총 바이트 제한, rate limit 예외 분리를 적용함 [확인 필요] 결과: 안전하게 분석 가능한 범위만 처리해 의미 있는 파일과 커밋 중심으로 결과를 정제하도록 함"}, {"problem": "녹음 파일 전사와 실시간 음성 전사는 요구사항이 달라 하나의 흐름으로 처리하기 어려움", "cause": "파일 기반은 안정성과 검증이 중요하고, 실시간은 지연과 스트리밍 이벤트 처리가 중요함", "solution": "`services/stt_service.py`에서 `RecordedAudioTranscriber`와 `OpenAIRealtimeTranscriber`를 분리하고 각각 파일 검증, PCM16 스트리밍 검증, 이벤트 큐 기반 처리를 구현함 [확인 필요] 결과: 배치형 STT와 실시간 STT를 각각의 특성에 맞게 운영할 수 있는 구조가 됨"}], "screens": [{"file": "", "label": ""}]};</script>
+<script>
+
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { toast: false, zoom: "" }; }
+  renderVals() {
+    const page = window.__PAGE_DATA || {
+      kind: "개인 프로젝트",
+      period: "2026.05 – 2026.06",
+      title: ["CineFlow", "영화 예매 관리 시스템"],
+      techs: ["Java 17", "Spring Boot", "JPA", "MySQL"],
+      github_url: "https://github.com",
+      hero_image: "",
+      download_filename: "project-portfolio.html",
+      flow: ["영화 · 상영관 선택", "좌석 선점", "결제 승인"],
+      design: [{ title: "좌석 선점 TTL", description: "결제 전 좌석을 잠시 잡아 둡니다." }],
+      troubleshooting: [{ problem: "같은 좌석이 두 번 예매됨", cause: "조회와 갱신 사이의 경쟁", solution: "비관적 락" }],
+      screens: []
+    };
+    const title = page.title || [];
+    const lead = Array.isArray(title) ? (title[0] || "") : String(title || "");
+    const rest = Array.isArray(title) ? (title[1] || "") : "";
+    const github = page.github_url || "";
+    if (this._url === undefined) {
+      const html = "<!doctype html><meta charset='utf-8'><title>" + lead + "</title><p>" + lead + " " + rest + "</p>";
+      try { this._url = URL.createObjectURL(new Blob([html], { type: "text/html" })); } catch (e) { this._url = "#"; }
+    }
+    function imageAddress(value) {
+      var text = String(value || "");
+      if (/^https?:\/\//i.test(text) || text.indexOf("images/") === 0) return text;
+      return "";
+    }
+    const heroSrc = imageAddress(page.hero_image);
+    const openImage = (src) => { if (src) this.setState({ zoom: src }); };
+    const screens = (page.screens || []).map(function (item) {
+      var src = imageAddress(item.file);
+      return {
+        label: item.label || "",
+        fileLabel: item.file || item.label || "이미지 없음",
+        src: src,
+        hasImage: !!src,
+        showText: !src,
+        open: function () { openImage(src); }
+      };
+    });
+    return {
+      kind: page.kind || "",
+      period: page.period || "",
+      titleLead: lead,
+      titleRest: rest,
+      techs: (page.techs || []).map(function (name) { return { name: name }; }),
+      hasGithub: !!github,
+      githubUrl: github || "#",
+      heroLabel: page.hero_image || "이미지 없음",
+      heroSrc: heroSrc,
+      hasHero: !!heroSrc,
+      showHeroText: !heroSrc,
+      openHero: function () { openImage(heroSrc); },
+      zoom: this.state.zoom || "",
+      hasZoom: !!this.state.zoom,
+      closeZoom: () => this.setState({ zoom: "" }),
+      flow: (page.flow || []).map(function (label, index) {
+        return { no: String(index + 1).padStart(2, "0"), label: label };
+      }),
+      design: page.design || [],
+      troubleshooting: page.troubleshooting || [],
+      screens: screens,
+      downloadName: page.download_filename || "project.html",
+      htmlUrl: this._url,
+      onSave: function () {}
+    };
+  }
+}
+
+window.__DC_COMPONENT = Component;
+window.__dcStart();
+</script>
+</body>
+</html>

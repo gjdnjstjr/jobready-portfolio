@@ -1,0 +1,66 @@
+{
+  "id": "ai",
+  "kind": "개인 프로젝트",
+  "period": "[확인 필요]",
+  "title": [
+    "AI",
+    "기반 데이터 분석·검색·전사 파이프라인"
+  ],
+  "summary": [
+    "원본 데이터 변경 시 오래된 검색 결과가 남지 않도록 인덱스를 재구성하는 동기화 흐름을 설계했습니다.",
+    "GitHub 전체를 무차별 수집하지 않고 중요한 파일과 커밋만 선별해 분석 안정성과 품질을 높였습니다.",
+    "파일 전사와 실시간 전사를 분리해 배치형 정확도와 실시간 응답성을 각각에 맞게 처리했습니다."
+  ],
+  "techs": [
+    "Oracle DB",
+    "SQLAlchemy",
+    "FastAPI",
+    "LangGraph",
+    "GitHub REST API",
+    "OpenAI API",
+    "WebSocket",
+    "Vector Store",
+    "Python"
+  ],
+  "github_url": "https://github.com/AGENT-KW/AI",
+  "hero_image": "",
+  "download_filename": "AI-portfolio.html",
+  "flow": [
+    "사용자 문서를 로드·청킹·벡터 저장소에 적재하고 검색 및 검증용 근거를 제공하는 인덱싱 파이프라인",
+    "GitHub 저장소 구조, 파일, 커밋 diff를 수집하되 tree truncation, 크기 제한, 인코딩 오류, rate limit을 고려한 안전한 분석",
+    "녹음 파일 전사와 WebSocket 기반 실시간 전사를 분리해 서로 다른 사용 시나리오에 맞는 STT 처리"
+  ],
+  "design": [
+    {
+      "title": "아키텍처",
+      "description": "Oracle DB를 원천 데이터 계층으로 두고, `config/database.py`에서 FastAPI용 비동기 세션과 LangGraph/배치 작업용 동기 세션을 분리한 구조입니다. `retrieval/service.py`가 사용자 프로필·이력서·포트폴리오·프로젝트·학교·레포지토리·커밋·채용공고를 수집해 청킹, 벡터 저장소 upsert, 검색, 근거 검증을 오케스트레이션합니다. `services/github_code_service.py`는 GitHub 저장소 구조와 커밋 diff를 선별 수집하고, `services/stt_service.py`는 파일 업로드 전사와 실시간 Realtime 전사를 분리합니다. UI와 전체 엔드포인트 구조는 제공 자료만으로는 [확인 필요]입니다. [확인 필요]"
+    },
+    {
+      "title": "기술 선택",
+      "description": "Oracle DB와 SQLAlchemy의 async/sync 이중 구성을 통해 FastAPI 요청 처리와 LangGraph 기반 동기 작업의 실행 모델 차이를 분리했습니다. 벡터 검색은 긴 문서를 직접 다루기보다 청킹 후 upsert·search하는 방식으로 구성했고, 검증 단계에서는 threshold를 기준으로 evidence 여부를 판정해 생성 결과를 근거 기반으로 통제했습니다. GitHub 연동은 전체 저장소를 단순 복제하는 방식이 아니라 tree truncation, 파일 크기 제한, rate limit, relevance scoring을 반영해 분석 대상 자체를 선별하도록 설계했습니다. STT는 안정적인 파일 업로드 전사와 지연을 줄인 실시간 전사를 분리해 입력 특성에 맞게 최적화했습니다. [확인 필요]"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Oracle 원본 데이터가 변경되거나 삭제되어도 기존 벡터 인덱스에 오래된 정보가 남을 수 있음",
+      "cause": "벡터 저장소는 원본 DB와 자동으로 동기화되지 않기 때문에 삭제된 소스가 검색 결과에 잔존할 수 있음",
+      "solution": "`retrieval/service.py`에서 `MANAGED_SOURCE_TYPES`를 기준으로 기존 소스를 먼저 삭제한 뒤 새 청크를 upsert하도록 구성함 결과: 삭제된 원본이 검색에 남는 stale data 문제를 구조적으로 줄이도록 설계됨"
+    },
+    {
+      "problem": "GitHub 저장소 전체를 분석하면 대용량 API 응답과 tree truncation, rate limit으로 인해 분석 품질이 흔들릴 수 있음",
+      "cause": "분석 대상이 너무 크면 불필요한 파일까지 포함되고, API 응답이 잘리거나 제한에 걸릴 수 있음",
+      "solution": "`services/github_code_service.py`에서 tree truncation 감지, 중요 파일 선별, 커밋 후보 점수화, 파일/총 바이트 제한, rate limit 예외 분리를 적용함 [확인 필요] 결과: 안전하게 분석 가능한 범위만 처리해 의미 있는 파일과 커밋 중심으로 결과를 정제하도록 함"
+    },
+    {
+      "problem": "녹음 파일 전사와 실시간 음성 전사는 요구사항이 달라 하나의 흐름으로 처리하기 어려움",
+      "cause": "파일 기반은 안정성과 검증이 중요하고, 실시간은 지연과 스트리밍 이벤트 처리가 중요함",
+      "solution": "`services/stt_service.py`에서 `RecordedAudioTranscriber`와 `OpenAIRealtimeTranscriber`를 분리하고 각각 파일 검증, PCM16 스트리밍 검증, 이벤트 큐 기반 처리를 구현함 [확인 필요] 결과: 배치형 STT와 실시간 STT를 각각의 특성에 맞게 운영할 수 있는 구조가 됨"
+    }
+  ],
+  "screens": [
+    {
+      "file": "",
+      "label": ""
+    }
+  ]
+}

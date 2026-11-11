@@ -1,0 +1,204 @@
+{
+  "name": "프론트엔드",
+  "owner": "gjdnjstjr",
+  "footer": "© 2026 gjdnjstjr",
+  "home": {
+    "headline": [
+      "공통 레이아웃과 헤더를 분리해 GNB 유무에 따라 일관된 UX를 구성했습니다.",
+      "탭별 검색어와 스크롤 위치를 저장해 이동 후에도 탐색 맥락을 유지했습니다."
+    ],
+    "summary": [
+      "북마크 변경분을 전역 store와 라우트 이동, pagehide 시점에 동기화해 데이터 유실을 줄였습니다.",
+      "공고 캡처 이미지 전처리와 오류 토스트, 재시도 정책을 중앙화해 AI 읽기 흐름과 예외 처리를 정리했습니다."
+    ],
+    "stats": [
+      {
+        "label": "프로젝트",
+        "value": 1
+      },
+      {
+        "label": "수상 경험",
+        "value": 0
+      },
+      {
+        "label": "활동",
+        "value": 1
+      }
+    ],
+    "photo_text": "g",
+    "photo": "images/photo.png",
+    "photos": [],
+    "location": "서울 노원구",
+    "position": "프론트엔드"
+  },
+  "about": {
+    "title": "사용 기술 및 경험",
+    "description": "이 포트폴리오에 입력한 기술과 경험입니다.",
+    "groups": [
+      {
+        "name": "기술 스택",
+        "description": "이 포트폴리오에 입력한 기술입니다.",
+        "rows": [
+          {
+            "name": "JavaScript",
+            "experience": ""
+          },
+          {
+            "name": "Java",
+            "experience": ""
+          },
+          {
+            "name": "C",
+            "experience": "아놔"
+          },
+          {
+            "name": "TypeScript",
+            "experience": ""
+          },
+          {
+            "name": "CSS",
+            "experience": ""
+          },
+          {
+            "name": "HTML",
+            "experience": ""
+          }
+        ]
+      }
+    ],
+    "main_tech": [
+      {
+        "name": "JavaScript",
+        "color": "#2443C4"
+      },
+      {
+        "name": "Java",
+        "color": "#2443C4"
+      },
+      {
+        "name": "C",
+        "color": "#2443C4"
+      },
+      {
+        "name": "TypeScript",
+        "color": "#2443C4"
+      },
+      {
+        "name": "CSS",
+        "color": "#2443C4"
+      },
+      {
+        "name": "HTML",
+        "color": "#2443C4"
+      }
+    ],
+    "awards": []
+  },
+  "history": {
+    "title": "이력 및 활동",
+    "description": "학력은 내정보이고, 활동과 자격은 입력한 내용입니다.",
+    "activities_title": "활동 및 경험",
+    "activities_description": "입력한 활동입니다.",
+    "activities": [
+      {
+        "period": "2022.02 ~2024.05",
+        "name": "아ㅏㄸ매",
+        "role": "라니맥더ㅏ",
+        "items": [
+          "다함"
+        ]
+      }
+    ],
+    "education": {
+      "major": "컴공",
+      "school": "광운대학교 · 대학교(4년) · 휴학중",
+      "period": "2022.02 – 2026.11"
+    },
+    "certificates": [
+      {
+        "name": "대통령상",
+        "org": "정부",
+        "date": "2022.04"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "frontend",
+      "detail_page": "8/PortfolioDetail.html",
+      "github_url": "https://github.com/AGENT-KW/FrontEnd",
+      "language": "React",
+      "language_color": "#2443C4",
+      "cover_bg": "#1F2430",
+      "cover_ink": "#F4F5F2",
+      "main_tech": "React",
+      "period": "2026.01 – 2026.11",
+      "title": "AGENT-KW FrontEnd",
+      "stack": "React · TypeScript · React Router · TanStack React Query · Zustand · Axios · MSW · Tailwind CSS",
+      "summary": [
+        "북마크 변경을 화면 이동과 탭 종료 시점까지 고려해 동기화함으로써 사용자 이탈 상황에서도 데이터 유실 가능성을 낮췄습니다.",
+        "탭별 검색어와 스크롤 위치를 분리 저장해 공고 탐색 중 사용자의 맥락이 끊기지 않도록 설계했습니다.",
+        "서버 상태와 UI 상태를 분리하고 인증·에러·캐시 정책을 중앙화해 유지보수하기 쉬운 프론트엔드 구조를 만들었습니다."
+      ],
+      "cover_image": "8/images/screen-1.png"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "stack": "",
+      "project": "AGENT-KW FrontEnd",
+      "tag": "",
+      "title": "북마크를 변경한 직후 페이지 이동이나 탭 종료가 발생하면 서버 반영 전 변경분이 유실될 수 있었습니다.",
+      "problem": "북마크를 변경한 직후 페이지 이동이나 탭 종료가 발생하면 서버 반영 전 변경분이 유실될 수 있었습니다.",
+      "cause": "북마크 변경 시점과 서버 전송 시점이 분리되어 있었고, 페이지 생명주기 종료 상황을 별도로 처리하지 않으면 마지막 변경이 전송되지 않을 수 있었습니다.",
+      "solution": "`app/stores/bookmarks.ts`에 미전송 변경분을 보관하고, `app/components/jobs/bookmark-sync.tsx`에서 라우트 이동 시 `flushBookmarks()`를 실행하며 `pagehide` 시점에는 `flushBookmarksOnUnload()`를 호출하도록 구성했습니다. 세션 만료나 로그아웃 시에는 `resetBookmarks()`로 상태를 정리했습니다.",
+      "result": "화면 이동과 탭 종료 상황까지 포함한 동기화 경로가 생겨 북마크 변경 유실 가능성을 줄이는 구조가 되었습니다.",
+      "detail_page": ""
+    },
+    {
+      "stack": "",
+      "project": "AGENT-KW FrontEnd",
+      "tag": "",
+      "title": "공고 화면에서 탭을 바꾸면 검색어와 스크롤 위치가 초기화되어 사용자가 보던 탐색 맥락이 끊길 수 있었습니다.",
+      "problem": "공고 화면에서 탭을 바꾸면 검색어와 스크롤 위치가 초기화되어 사용자가 보던 탐색 맥락이 끊길 수 있었습니다.",
+      "cause": "탭 상태를 단일 경로 또는 단일 상태로만 관리하면 탭별 마지막 필터와 위치를 각각 복원하기 어렵습니다.",
+      "solution": "`app/stores/jobs-tabs.ts`에서 `all`, `recommend`, `bookmarks` 탭별로 검색어와 스크롤 위치를 분리 저장하고, `tabPath(tab)`로 탭별 마지막 필터를 포함한 경로를 만들었습니다.",
+      "result": "탭 전환 후에도 이전에 보던 맥락을 유지할 수 있는 구조가 마련되었습니다.",
+      "detail_page": ""
+    },
+    {
+      "stack": "",
+      "project": "AGENT-KW FrontEnd",
+      "tag": "",
+      "title": "커스텀 디자인 토큰을 사용할 때 class 병합 결과가 의도와 다르게 바뀔 수 있었습니다.",
+      "problem": "커스텀 디자인 토큰을 사용할 때 class 병합 결과가 의도와 다르게 바뀔 수 있었습니다.",
+      "cause": "`tailwind-merge`가 프로젝트 고유의 텍스트 크기나 그림자 토큰을 기본 규칙으로는 정확히 인식하지 못할 수 있습니다.",
+      "solution": "`app/lib/utils.ts`에서 `createCn`의 `extend.classGroups`에 커스텀 font-size와 shadow 토큰을 등록해 병합 규칙을 보정했습니다.",
+      "result": "`text-label2`, `shadow-pop` 같은 커스텀 클래스가 다른 스타일과 함께 안정적으로 유지되도록 했습니다.",
+      "detail_page": ""
+    },
+    {
+      "stack": "",
+      "project": "AGENT-KW FrontEnd",
+      "tag": "",
+      "title": "아놔",
+      "problem": "아놔",
+      "cause": "인세진이 일을 안함",
+      "solution": "인세진이 일을 안함",
+      "result": "",
+      "detail_page": ""
+    }
+  ],
+  "contact": {
+    "title": "연락처",
+    "description": "채용 문의나 협업 제안은 이메일로 보내주세요.",
+    "email": "",
+    "links": [
+      {
+        "label": "GITHUB",
+        "value": "github.com/gjdnjstjr",
+        "url": "https://github.com/gjdnjstjr"
+      }
+    ]
+  }
+}

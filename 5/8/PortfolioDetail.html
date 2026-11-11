@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프로젝트 상세</title>
+<!-- 글꼴 Pretendard 1.3.9 (프론트와 같음) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<!-- 색 · 글자 · 간격은 JOBReady 프론트(원티드 몽타주 + 합격 그린, PRD 10.2)와 같은 값 -->
+<style>
+:root{
+  --ink-body:oklch(0.259 0.01 273);--ink-label:oklch(0.298 0.01 273);--line:oklch(0.521 0.018 273);
+  --background:oklch(0.972 0.002 286);--card:oklch(1 0 0);
+  --foreground:color-mix(in oklab,var(--ink-body) 88%,white);
+  --foreground-strong:oklch(0.148 0.004 277);
+  --muted-foreground:color-mix(in oklab,var(--ink-label) 61%,white);
+  --foreground-subtle:color-mix(in oklab,var(--ink-label) 43%,white);
+  --foreground-disabled:color-mix(in oklab,var(--ink-label) 28%,white);
+  --muted:oklch(0.961 0.002 286);
+  --fill:color-mix(in oklab,var(--line) 10%,transparent);
+  --border:color-mix(in oklab,var(--line) 8%,transparent);
+  --border-outline:color-mix(in oklab,var(--line) 16%,transparent);
+  --border-strong:color-mix(in oklab,var(--line) 35%,transparent);
+  /* 합격 그린 (PRD 10.2) */
+  --primary:oklch(0.47 0.1 163);--primary-foreground:oklch(1 0 0);
+  --highlight:oklch(0.955 0.035 163);--highlight-foreground:oklch(0.4 0.09 163);
+  --highlight-weak:oklch(0.985 0.012 163);
+  --interaction-hover:oklch(0.205 0.004 286 / 0.075);--interaction-active:oklch(0.205 0.004 286 / 0.18);
+  --overlay:oklch(0 0 0);
+  --shadow-raise:0 1px 2px oklch(0.155 0 0 / 0.06),0 1px 3px oklch(0 0 0 / 0.05);
+  --font-sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--background);color:var(--foreground);font-family:var(--font-sans);font-size:16px;line-height:1.5;letter-spacing:.0057em;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul,ol,dl,dd,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit;text-decoration:none}
+img{display:block}
+button{font:inherit;letter-spacing:inherit}
+/* 몽타주 타입 스케일 (프론트 app.css @theme) */
+.t-caption1{font-size:12px;line-height:1.334;letter-spacing:.0252em}
+.t-label2{font-size:13px;line-height:1.385;letter-spacing:.0194em}
+.t-label1{font-size:14px;line-height:1.429;letter-spacing:.0145em}
+.t-body2{font-size:15px;line-height:1.467;letter-spacing:.0096em}
+.t-headline1{font-size:18px;line-height:1.445;letter-spacing:-.002em}
+.t-heading2{font-size:20px;line-height:1.4;letter-spacing:-.012em}
+.t-title3{font-size:24px;line-height:1.334;letter-spacing:-.023em}
+.c-strong{color:var(--foreground-strong)}.c-muted{color:var(--muted-foreground)}.c-subtle{color:var(--foreground-subtle)}
+.c-primary{color:var(--primary)}
+.w5{font-weight:500}.w6{font-weight:600}.w7{font-weight:700}
+.num{font-variant-numeric:tabular-nums}
+.mono{font-family:var(--font-mono)}
+.pre{white-space:pre-line}
+.trunc{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wrap{max-width:1280px;margin:0 auto;padding:40px 24px 96px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px}
+/* 섹션 머리: 제목 + 헤어라인, 선 앞쪽에 primary 짧은 선 (프론트 SectionHead · TemplateSection) */
+.sh{display:flex;align-items:center;gap:16px}
+.sh h2{flex:none;font-weight:700;color:var(--foreground-strong)}
+.sh i{position:relative;flex:1;height:1px;background:var(--border)}
+.sh i::before{content:"";position:absolute;left:0;top:-1px;height:2px;border-radius:999px;background:var(--primary)}
+/* 몽타주 button: 굵기 700, solid는 hover 때 인터랙션 층 */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex:none;height:40px;padding:0 20px;border:1px solid transparent;border-radius:10px;font-size:15px;font-weight:700;letter-spacing:.006em;white-space:nowrap;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s}
+.btn svg{width:16px;height:16px;flex:none}
+.btn-p{background:var(--primary);color:var(--primary-foreground)}
+.btn-p:hover{background-image:linear-gradient(var(--interaction-hover),var(--interaction-hover))}
+.btn-p:active{background-image:linear-gradient(var(--interaction-active),var(--interaction-active))}
+.btn-o{border-color:var(--border-outline);background:var(--card);color:var(--foreground)}
+.btn-o:hover{background:var(--muted)}
+.btn-sm{height:32px;padding:0 14px;border-radius:8px;font-size:14px}
+.btn-sm svg{width:14px;height:14px}
+.btn-lg{height:44px}
+.btn:disabled{cursor:default;background:var(--fill);color:var(--foreground-disabled);background-image:none}
+.btn:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in oklch,var(--primary) 30%,transparent)}
+/* 몽타주 chip brand 34px */
+.chip{display:inline-flex;align-items:center;height:34px;padding:0 14px;border-radius:999px;background:var(--highlight);color:var(--highlight-foreground);font-size:13px;font-weight:600;letter-spacing:.0194em}
+/* 확대 보기 */
+.zoom{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;padding:32px;background:color-mix(in oklch,var(--overlay) 86%,transparent);cursor:zoom-out}
+.zoom img{max-width:min(1100px,100%);max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:12px}
+.zoom button{position:absolute;top:20px;right:20px;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:999px;background:color-mix(in oklch,white 10%,transparent);color:#fff;cursor:pointer}
+.zoom button:hover{background:color-mix(in oklch,white 20%,transparent)}
+.zoom button svg{width:20px;height:20px}
+
+.wrap{max-width:1180px}
+.article{display:flex;flex-direction:column;gap:48px}
+.sec{display:flex;flex-direction:column;gap:16px}
+.sh h2{font-size:18px;line-height:1.445;letter-spacing:-.002em}
+.sh i::before{width:40px}
+/* ① 히어로: 왼쪽 4px primary (프론트와 같음) */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 360px;align-items:center;gap:40px;padding:40px;border-left:4px solid var(--primary)}
+.hero-l{display:flex;flex-direction:column;gap:16px;min-width:0}
+.meta{display:flex;align-items:center;gap:8px}
+.meta .bar{color:var(--border-strong)}
+.hero h1{font-size:30px;line-height:1.375;font-weight:700;color:var(--foreground-strong);letter-spacing:-.02em}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+/* 사진 칸: 비면 점선 + 라벨 (프론트 PhotoBox) */
+.photo{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:12px;text-align:center;font-size:12px;font-weight:500}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;cursor:zoom-in}
+.photo.empty{border:1px dashed var(--border-strong);background:var(--card);color:var(--foreground-subtle)}
+.ar-hero{aspect-ratio:4/3}.ar-shot{aspect-ratio:16/10}
+/* ② 핵심 흐름 */
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.step{display:flex;flex-direction:column;gap:4px;padding:12px 16px;border:1px solid var(--border);border-left:3px solid var(--primary);border-radius:12px;background:var(--card)}
+.step small{font-size:12px;font-weight:700;color:var(--primary);font-variant-numeric:tabular-nums}
+.arrow{width:16px;height:16px;color:var(--foreground-subtle)}
+/* ③ 핵심 설계 */
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.dc{display:flex;flex-direction:column;gap:8px;padding:20px;border-radius:12px}
+.dc p{line-height:1.625}
+/* ④ 트러블슈팅 */
+.tbox{padding:8px 28px;border-radius:12px}
+.trow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:24px}
+.trow.head{padding:12px 0}
+.trow.item{padding:16px 0;border-top:1px solid var(--border)}
+.trow .why{display:flex;flex-direction:column;gap:4px;line-height:1.625}
+.trow .why b{margin-right:6px;color:var(--primary)}
+/* ⑤ 결과 및 화면 */
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.shot{display:flex;flex-direction:column;gap:8px}
+.shot .photo{box-shadow:var(--shadow-raise)}
+.cap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cap button{display:inline-flex;align-items:center;gap:4px;padding:0;border:0;background:none;color:var(--primary);font-weight:600;cursor:pointer}
+.cap button:hover{text-decoration:underline}
+.cap button svg{width:14px;height:14px}
+@media (max-width:760px){
+  .wrap{padding:24px 16px 64px}
+  .hero{grid-template-columns:minmax(0,1fr);padding:24px}
+  .g3,.g2,.trow{grid-template-columns:minmax(0,1fr)}
+  .trow{gap:8px}.trow.head{display:none}.tbox{padding:4px 20px}
+  .hero h1{font-size:24px}
+}
+</style>
+<script src="../_runtime/preact.min.js"></script>
+<script src="../_runtime/dc-lite.js"></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<script>window.__DC_TREE = [{"t":"main","a":{"class":"wrap"},"c":[{"t":"article","a":{"class":"article"},"c":[{"t":"section","a":{"class":"card hero"},"c":[{"t":"div","a":{"class":"hero-l"},"c":[{"t":"p","a":{"class":"meta t-label2 w5 c-muted"},"c":[{"t":"sc-if","a":{"value":"{{hasKind}}"},"c":[{"t":"span","a":{"class":"w6 c-primary"},"c":["{{kind}}"]}]},{"t":"sc-if","a":{"value":"{{hasBar}}"},"c":[{"t":"span","a":{"class":"bar","aria-hidden":"true"},"c":["|"]}]},{"t":"sc-if","a":{"value":"{{hasPeriod}}"},"c":[{"t":"span","a":{"class":"num"},"c":["{{period}}"]}]}]},{"t":"h1","c":["{{titleLead}}",{"t":"br"},"{{titleRest}}"]},{"t":"ul","a":{"class":"chips"},"c":[{"t":"sc-for","a":{"list":"{{techs}}","as":"t"},"c":[{"t":"li","a":{"class":"chip"},"c":["{{t}}"]}]}]},{"t":"sc-if","a":{"value":"{{hasGithub}}"},"c":[{"t":"div","c":[{"t":"a","a":{"class":"btn btn-o btn-sm","href":"{{githubUrl}}","target":"_blank","rel":"noopener noreferrer"},"c":["GitHub",{"t":"svg","a":{"class":"","viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","stroke-width":"2","stroke-linecap":"round","stroke-linejoin":"round","aria-hidden":"true"},"c":[{"t":"path","a":{"d":"M15 3h6v6"}},{"t":"path","a":{"d":"M10 14 21 3"}},{"t":"path","a":{"d":"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"}}]}]}]}]}]},{"t":"div","c":[{"t":"sc-if","a":{"value":"{{hasHero}}"},"c":[{"t":"div","a":{"class":"photo ar-hero"},"c":[{"t":"img","a":{"src":"{{heroSrc}}","alt":"{{heroAlt}}","onClick":"{{openHero}}"}}]}]},{"t":"sc-if","a":{"value":"{{showHeroEmpty}}"},"c":[{"t":"div","a":{"class":"photo empty ar-hero"},"c":[{"t":"span","c":["[히어로 이미지 4:3]"]}]}]}]}]},{"t":"sc-if","a":{"value":"{{hasFlow}}"},"c":[{"t":"section","a":{"class":"sec"},"c":[{"t":"div","a":{"class":"sh"},"c":[{"t":"h2","c":["핵심 흐름"]},{"t":"i","a":{"aria-hidden":"true"}}]},{"t":"ol","a":{"class":"flow"},"c":[{"t":"sc-for","a":{"list":"{{flow}}","as":"f"},"c":[{"t":"li","a":{"class":"step t-body2 w5 c-strong"},"c":[{"t":"small","c":["{{f.no}}"]},"{{f.label}}"]},{"t":"sc-if","a":{"value":"{{f.arrow}}"},"c":[{"t":"svg","a":{"class":"arrow","viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","stroke-width":"2","stroke-linecap":"round","stroke-linejoin":"round","aria-hidden":"true"},"c":[{"t":"path","a":{"d":"m9 18 6-6-6-6"}}]}]}]}]}]}]},{"t":"sc-if","a":{"value":"{{hasDesign}}"},"c":[{"t":"section","a":{"class":"sec"},"c":[{"t":"div","a":{"class":"sh"},"c":[{"t":"h2","c":["핵심 설계"]},{"t":"i","a":{"aria-hidden":"true"}}]},{"t":"div","a":{"class":"g3"},"c":[{"t":"sc-for","a":{"list":"{{design}}","as":"d"},"c":[{"t":"div","a":{"class":"card dc"},"c":[{"t":"h3","a":{"class":"w7 c-strong"},"c":["{{d.title}}"]},{"t":"p","a":{"class":"t-body2 c-muted"},"c":["{{d.description}}"]}]}]}]}]}]},{"t":"sc-if","a":{"value":"{{hasTrouble}}"},"c":[{"t":"section","a":{"class":"sec"},"c":[{"t":"div","a":{"class":"sh"},"c":[{"t":"h2","c":["트러블슈팅"]},{"t":"i","a":{"aria-hidden":"true"}}]},{"t":"div","a":{"class":"card tbox"},"c":[{"t":"div","a":{"class":"trow head t-caption1 w6 c-subtle"},"c":[{"t":"span","c":["문제 상황"]},{"t":"span","c":["원인 및 해결"]}]},{"t":"sc-for","a":{"list":"{{troubleshooting}}","as":"t"},"c":[{"t":"div","a":{"class":"trow item"},"c":[{"t":"p","a":{"class":"w6 c-strong"},"c":["{{t.problem}}"]},{"t":"div","a":{"class":"why t-body2"},"c":[{"t":"p","c":[{"t":"b","c":["원인"]},"{{t.cause}}"]},{"t":"p","c":[{"t":"b","c":["해결"]},"{{t.solution}}"]}]}]}]}]}]}]},{"t":"sc-if","a":{"value":"{{hasScreens}}"},"c":[{"t":"section","a":{"class":"sec"},"c":[{"t":"div","a":{"class":"sh"},"c":[{"t":"h2","c":["결과 및 화면"]},{"t":"i","a":{"aria-hidden":"true"}}]},{"t":"div","a":{"class":"g2"},"c":[{"t":"sc-for","a":{"list":"{{screens}}","as":"s"},"c":[{"t":"figure","a":{"class":"shot"},"c":[{"t":"sc-if","a":{"value":"{{s.hasImage}}"},"c":[{"t":"div","a":{"class":"photo ar-shot"},"c":[{"t":"img","a":{"src":"{{s.src}}","alt":"{{s.label}}","onClick":"{{s.open}}"}}]}]},{"t":"sc-if","a":{"value":"{{s.showEmpty}}"},"c":[{"t":"div","a":{"class":"photo empty ar-shot"},"c":[{"t":"span","c":["[결과 화면 · {{s.label}}]"]}]}]},{"t":"figcaption","a":{"class":"cap t-label2 c-muted"},"c":[{"t":"span","c":["{{s.label}}"]},{"t":"sc-if","a":{"value":"{{s.hasImage}}"},"c":[{"t":"button","a":{"type":"button","onClick":"{{s.open}}"},"c":[{"t":"svg","a":{"class":"","viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","stroke-width":"2","stroke-linecap":"round","stroke-linejoin":"round","aria-hidden":"true"},"c":[{"t":"path","a":{"d":"M15 3h6v6"}},{"t":"path","a":{"d":"M9 21H3v-6"}},{"t":"path","a":{"d":"M21 3l-7 7"}},{"t":"path","a":{"d":"M3 21l7-7"}}]},"미리보기"]}]}]}]}]}]}]}]}]}]},{"t":"sc-if","a":{"value":"{{hasZoom}}"},"c":[{"t":"div","a":{"class":"zoom","role":"dialog","aria-label":"확대 이미지","onClick":"{{closeZoom}}"},"c":[{"t":"img","a":{"src":"{{zoom}}","alt":""}},{"t":"button","a":{"type":"button","aria-label":"닫기","onClick":"{{closeZoom}}"},"c":[{"t":"svg","a":{"class":"","viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","stroke-width":"2","stroke-linecap":"round","stroke-linejoin":"round","aria-hidden":"true"},"c":[{"t":"path","a":{"d":"M18 6 6 18"}},{"t":"path","a":{"d":"m6 6 12 12"}}]}]}]}]}];
+window.__DC_DEFAULTS = {};</script>
+<script>
+// 프로젝트 틀 — 읽기 화면 (프론트 components/projects/project-view.tsx와 같은 구조 · 색).
+// 데이터 = PortfolioDetail.json (window.__PAGE_DATA). 사진은 http(s) · data: · images/… 주소만 그린다
+const SAMPLE_PROJECT = {
+  kind: "개인 프로젝트",
+  period: "2026.05 – 2026.06",
+  title: ["CineFlow", "영화 예매 관리 시스템"],
+  techs: ["Java 17", "Spring Boot", "JPA", "MySQL"],
+  github_url: "https://github.com",
+  hero_image: "",
+  flow: ["영화 · 상영관 선택", "좌석 선점", "결제 승인"],
+  design: [{ title: "좌석 선점 TTL", description: "결제 전 좌석을 잠시 잡아 둡니다." }],
+  troubleshooting: [{ problem: "같은 좌석이 두 번 예매됨", cause: "조회와 갱신 사이의 경쟁", solution: "비관적 락" }],
+  screens: [{ file: null, label: "예매 화면" }]
+};
+</script>
+<script>window.__PAGE_DATA = {"id": "frontend", "kind": "개인 프로젝트", "period": "2026.01 – 2026.11", "title": ["AGENT-KW", "FrontEnd"], "summary": ["북마크 변경을 화면 이동과 탭 종료 시점까지 고려해 동기화함으로써 사용자 이탈 상황에서도 데이터 유실 가능성을 낮췄습니다.", "탭별 검색어와 스크롤 위치를 분리 저장해 공고 탐색 중 사용자의 맥락이 끊기지 않도록 설계했습니다.", "서버 상태와 UI 상태를 분리하고 인증·에러·캐시 정책을 중앙화해 유지보수하기 쉬운 프론트엔드 구조를 만들었습니다."], "techs": ["React", "TypeScript", "React Router", "TanStack React Query", "Zustand", "Axios", "MSW", "Tailwind CSS"], "github_url": "https://github.com/AGENT-KW/FrontEnd", "hero_image": "", "download_filename": "FrontEnd-portfolio.html", "flow": ["공통 레이아웃과 헤더를 분리해 GNB가 있는 화면과 없는 화면의 UX를 일관되게 구성했습니다.", "공고 목록의 탭별 검색어와 스크롤 위치를 별도 저장해 탭 이동 후에도 탐색 맥락을 유지합니다.", "북마크 변경분을 전역 store에 보관하고 라우트 이동 및 pagehide 시점에 동기화해 데이터 유실을 줄입니다.", "직무 코드와 사용자 스택을 기준으로 공고와의 매칭 상태를 시각화합니다.", "마감일 D-day, 회사 마크, 스택 칩 등 도메인 표현 컴포넌트를 분리해 목록 정보를 읽기 쉽게 제공합니다.", "공고 캡처 이미지 입력을 메모리 기반으로 처리하고 이미지 타입과 용량을 제한해 AI 읽기 흐름의 전처리를 지원합니다.", "전역 쿼리 클라이언트에서 5xx 오류 토스트와 재시도 정책을 중앙화해 화면별 예외 처리를 줄였습니다."], "design": [{"title": "아키텍처", "description": "React + TypeScript 기반 SPA/SSR 하이브리드 구조이며, `HydratedRouter`로 수화하고 개발 환경에서는 MSW mock을 선택적으로 적용합니다. 서버 상태는 TanStack React Query로 관리하고, 로그인 상태·탭 상태·북마크 변경분 같은 클라이언트 상태는 Zustand로 분리했습니다. 네트워크 계층은 `app/lib/api.ts`에서 백엔드용 `api`와 AI 서버용 `aiApi`를 분리해 세션 쿠키 기반 인증과 외부 AI 호출을 구분합니다."}, {"title": "기술 선택", "description": "서버 상태와 클라이언트 상태를 분리하기 위해 React Query와 Zustand를 함께 사용했고, 인증 상태는 `checking / authed / guest`처럼 더 세분화해 초기 진입과 세션 만료를 구분했습니다. 또한 백엔드 API와 AI API를 분리된 axios 인스턴스로 나눠 서로 다른 인증 정책을 억지로 섞지 않도록 했습니다. 디자인 시스템 측면에서는 `tailwind-merge`가 커스텀 토큰을 잘못 병합하지 않도록 `createCn`에 커스텀 class group을 확장해 토큰 기반 스타일이 안정적으로 유지되도록 했습니다. UI 구성은 재사용 가능한 primitive와 도메인 전용 컴포넌트를 분리해 목록 화면에서 반복되는 표현을 캡슐화했습니다."}], "troubleshooting": [{"problem": "북마크를 변경한 직후 페이지 이동이나 탭 종료가 발생하면 서버 반영 전 변경분이 유실될 수 있었습니다.", "cause": "북마크 변경 시점과 서버 전송 시점이 분리되어 있었고, 페이지 생명주기 종료 상황을 별도로 처리하지 않으면 마지막 변경이 전송되지 않을 수 있었습니다.", "solution": "`app/stores/bookmarks.ts`에 미전송 변경분을 보관하고, `app/components/jobs/bookmark-sync.tsx`에서 라우트 이동 시 `flushBookmarks()`를 실행하며 `pagehide` 시점에는 `flushBookmarksOnUnload()`를 호출하도록 구성했습니다. 세션 만료나 로그아웃 시에는 `resetBookmarks()`로 상태를 정리했습니다. 결과: 화면 이동과 탭 종료 상황까지 포함한 동기화 경로가 생겨 북마크 변경 유실 가능성을 줄이는 구조가 되었습니다."}, {"problem": "공고 화면에서 탭을 바꾸면 검색어와 스크롤 위치가 초기화되어 사용자가 보던 탐색 맥락이 끊길 수 있었습니다.", "cause": "탭 상태를 단일 경로 또는 단일 상태로만 관리하면 탭별 마지막 필터와 위치를 각각 복원하기 어렵습니다.", "solution": "`app/stores/jobs-tabs.ts`에서 `all`, `recommend`, `bookmarks` 탭별로 검색어와 스크롤 위치를 분리 저장하고, `tabPath(tab)`로 탭별 마지막 필터를 포함한 경로를 만들었습니다. 결과: 탭 전환 후에도 이전에 보던 맥락을 유지할 수 있는 구조가 마련되었습니다."}, {"problem": "커스텀 디자인 토큰을 사용할 때 class 병합 결과가 의도와 다르게 바뀔 수 있었습니다.", "cause": "`tailwind-merge`가 프로젝트 고유의 텍스트 크기나 그림자 토큰을 기본 규칙으로는 정확히 인식하지 못할 수 있습니다.", "solution": "`app/lib/utils.ts`에서 `createCn`의 `extend.classGroups`에 커스텀 font-size와 shadow 토큰을 등록해 병합 규칙을 보정했습니다. 결과: `text-label2`, `shadow-pop` 같은 커스텀 클래스가 다른 스타일과 함께 안정적으로 유지되도록 했습니다."}], "screens": [{"file": "images/screen-1.png", "label": "아 내가 다 했다 "}, {"file": "images/screen-2.png", "label": "하아 진짜"}]};</script>
+<script>
+
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { zoom: "" }; }
+  componentDidMount() {
+    // 확대 보기는 Esc로도 닫는다
+    try { window.addEventListener("keydown", (e) => { if (e.key === "Escape" && this.state.zoom) this.setState({ zoom: "" }); }); } catch (e) {}
+  }
+  renderVals() {
+    const page = window.__PAGE_DATA || SAMPLE_PROJECT;
+    const text = (v) => (typeof v === "string" ? v : "");
+    const title = Array.isArray(page.title) ? page.title : [text(page.title)];
+    const imageAddress = (value) => {
+      const v = text(value);
+      return /^(https?:|data:image\/)/i.test(v) || v.indexOf("images/") >= 0 ? v : "";
+    };
+    const open = (src) => () => { if (src) this.setState({ zoom: src }); };
+    const kind = text(page.kind), period = text(page.period);
+    const github = text(page.github_url);
+    const heroSrc = imageAddress(page.hero_image);
+    const flow = (page.flow || []).map(text);
+    const screens = (page.screens || []).map((s) => {
+      const src = imageAddress(s && s.file);
+      return { label: text(s && s.label), src: src, hasImage: !!src, showEmpty: !src, open: open(src) };
+    });
+    if (typeof document !== "undefined" && title[0]) document.title = [title[0], title[1]].filter(Boolean).join(" ");
+    return {
+      kind: kind, hasKind: !!kind, period: period, hasPeriod: !!period, hasBar: !!(kind && period),
+      titleLead: text(title[0]), titleRest: text(title[1]),
+      techs: (page.techs || []).map(text).filter(Boolean),
+      hasGithub: /^https?:\/\//i.test(github), githubUrl: github,
+      heroSrc: heroSrc, hasHero: !!heroSrc, showHeroEmpty: !heroSrc,
+      heroAlt: [title[0], title[1]].filter(Boolean).join(" ") + " 히어로 이미지",
+      openHero: open(heroSrc),
+      flow: flow.map((label, i) => ({ no: String(i + 1).padStart(2, "0"), label: label, arrow: i < flow.length - 1 })),
+      hasFlow: flow.length > 0,
+      design: page.design || [], hasDesign: (page.design || []).length > 0,
+      troubleshooting: page.troubleshooting || [], hasTrouble: (page.troubleshooting || []).length > 0,
+      screens: screens, hasScreens: screens.length > 0,
+      zoom: this.state.zoom, hasZoom: !!this.state.zoom,
+      closeZoom: () => this.setState({ zoom: "" })
+    };
+  }
+}
+
+window.__DC_COMPONENT = Component;
+window.__dcStart();
+</script>
+</body>
+</html>

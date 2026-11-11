@@ -1,0 +1,73 @@
+{
+  "id": "frontend",
+  "kind": "개인 프로젝트",
+  "period": "2026.01 – 2026.11",
+  "title": [
+    "AGENT-KW",
+    "FrontEnd"
+  ],
+  "summary": [
+    "북마크 변경을 화면 이동과 탭 종료 시점까지 고려해 동기화함으로써 사용자 이탈 상황에서도 데이터 유실 가능성을 낮췄습니다.",
+    "탭별 검색어와 스크롤 위치를 분리 저장해 공고 탐색 중 사용자의 맥락이 끊기지 않도록 설계했습니다.",
+    "서버 상태와 UI 상태를 분리하고 인증·에러·캐시 정책을 중앙화해 유지보수하기 쉬운 프론트엔드 구조를 만들었습니다."
+  ],
+  "techs": [
+    "React",
+    "TypeScript",
+    "React Router",
+    "TanStack React Query",
+    "Zustand",
+    "Axios",
+    "MSW",
+    "Tailwind CSS"
+  ],
+  "github_url": "https://github.com/AGENT-KW/FrontEnd",
+  "hero_image": "",
+  "download_filename": "FrontEnd-portfolio.html",
+  "flow": [
+    "공통 레이아웃과 헤더를 분리해 GNB가 있는 화면과 없는 화면의 UX를 일관되게 구성했습니다.",
+    "공고 목록의 탭별 검색어와 스크롤 위치를 별도 저장해 탭 이동 후에도 탐색 맥락을 유지합니다.",
+    "북마크 변경분을 전역 store에 보관하고 라우트 이동 및 pagehide 시점에 동기화해 데이터 유실을 줄입니다.",
+    "직무 코드와 사용자 스택을 기준으로 공고와의 매칭 상태를 시각화합니다.",
+    "마감일 D-day, 회사 마크, 스택 칩 등 도메인 표현 컴포넌트를 분리해 목록 정보를 읽기 쉽게 제공합니다.",
+    "공고 캡처 이미지 입력을 메모리 기반으로 처리하고 이미지 타입과 용량을 제한해 AI 읽기 흐름의 전처리를 지원합니다.",
+    "전역 쿼리 클라이언트에서 5xx 오류 토스트와 재시도 정책을 중앙화해 화면별 예외 처리를 줄였습니다."
+  ],
+  "design": [
+    {
+      "title": "아키텍처",
+      "description": "React + TypeScript 기반 SPA/SSR 하이브리드 구조이며, `HydratedRouter`로 수화하고 개발 환경에서는 MSW mock을 선택적으로 적용합니다. 서버 상태는 TanStack React Query로 관리하고, 로그인 상태·탭 상태·북마크 변경분 같은 클라이언트 상태는 Zustand로 분리했습니다. 네트워크 계층은 `app/lib/api.ts`에서 백엔드용 `api`와 AI 서버용 `aiApi`를 분리해 세션 쿠키 기반 인증과 외부 AI 호출을 구분합니다."
+    },
+    {
+      "title": "기술 선택",
+      "description": "서버 상태와 클라이언트 상태를 분리하기 위해 React Query와 Zustand를 함께 사용했고, 인증 상태는 `checking / authed / guest`처럼 더 세분화해 초기 진입과 세션 만료를 구분했습니다. 또한 백엔드 API와 AI API를 분리된 axios 인스턴스로 나눠 서로 다른 인증 정책을 억지로 섞지 않도록 했습니다. 디자인 시스템 측면에서는 `tailwind-merge`가 커스텀 토큰을 잘못 병합하지 않도록 `createCn`에 커스텀 class group을 확장해 토큰 기반 스타일이 안정적으로 유지되도록 했습니다. UI 구성은 재사용 가능한 primitive와 도메인 전용 컴포넌트를 분리해 목록 화면에서 반복되는 표현을 캡슐화했습니다."
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "북마크를 변경한 직후 페이지 이동이나 탭 종료가 발생하면 서버 반영 전 변경분이 유실될 수 있었습니다.",
+      "cause": "북마크 변경 시점과 서버 전송 시점이 분리되어 있었고, 페이지 생명주기 종료 상황을 별도로 처리하지 않으면 마지막 변경이 전송되지 않을 수 있었습니다.",
+      "solution": "`app/stores/bookmarks.ts`에 미전송 변경분을 보관하고, `app/components/jobs/bookmark-sync.tsx`에서 라우트 이동 시 `flushBookmarks()`를 실행하며 `pagehide` 시점에는 `flushBookmarksOnUnload()`를 호출하도록 구성했습니다. 세션 만료나 로그아웃 시에는 `resetBookmarks()`로 상태를 정리했습니다. 결과: 화면 이동과 탭 종료 상황까지 포함한 동기화 경로가 생겨 북마크 변경 유실 가능성을 줄이는 구조가 되었습니다."
+    },
+    {
+      "problem": "공고 화면에서 탭을 바꾸면 검색어와 스크롤 위치가 초기화되어 사용자가 보던 탐색 맥락이 끊길 수 있었습니다.",
+      "cause": "탭 상태를 단일 경로 또는 단일 상태로만 관리하면 탭별 마지막 필터와 위치를 각각 복원하기 어렵습니다.",
+      "solution": "`app/stores/jobs-tabs.ts`에서 `all`, `recommend`, `bookmarks` 탭별로 검색어와 스크롤 위치를 분리 저장하고, `tabPath(tab)`로 탭별 마지막 필터를 포함한 경로를 만들었습니다. 결과: 탭 전환 후에도 이전에 보던 맥락을 유지할 수 있는 구조가 마련되었습니다."
+    },
+    {
+      "problem": "커스텀 디자인 토큰을 사용할 때 class 병합 결과가 의도와 다르게 바뀔 수 있었습니다.",
+      "cause": "`tailwind-merge`가 프로젝트 고유의 텍스트 크기나 그림자 토큰을 기본 규칙으로는 정확히 인식하지 못할 수 있습니다.",
+      "solution": "`app/lib/utils.ts`에서 `createCn`의 `extend.classGroups`에 커스텀 font-size와 shadow 토큰을 등록해 병합 규칙을 보정했습니다. 결과: `text-label2`, `shadow-pop` 같은 커스텀 클래스가 다른 스타일과 함께 안정적으로 유지되도록 했습니다."
+    }
+  ],
+  "screens": [
+    {
+      "file": "images/screen-1.png",
+      "label": "아 내가 다 했다 "
+    },
+    {
+      "file": "images/screen-2.png",
+      "label": "하아 진짜"
+    }
+  ]
+}
